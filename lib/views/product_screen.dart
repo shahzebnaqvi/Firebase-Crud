@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_image/service/firebase_database.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -85,7 +86,18 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  addProduct();
+                  // addProduct();
+                  FirebaseDatabase firebaseDatabase = FirebaseDatabase();
+                  firebaseDatabase.addProduct("bills", {
+                    "billid": "7932",
+                    "billname": "KE",
+                    "billamout": "323423"
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('No file was selected'),
+                    ),
+                  );
                 },
                 child: Text("Add Products")),
             FutureBuilder(
